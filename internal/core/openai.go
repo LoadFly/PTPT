@@ -2,17 +2,16 @@ package core
 
 import (
 	"context"
-	"net/http"
-	"net/url"
-	"path/filepath"
-	"sync"
-
 	"github.com/avast/retry-go/v4"
 	"github.com/leslieleung/ptpt/internal/config"
 	"github.com/leslieleung/ptpt/internal/interract"
 	"github.com/leslieleung/ptpt/internal/ui"
 	"github.com/sashabaranov/go-openai"
 	log "github.com/sirupsen/logrus"
+	"net/http"
+	"net/url"
+	"path/filepath"
+	"sync"
 )
 
 type OpenAI struct {
@@ -20,11 +19,6 @@ type OpenAI struct {
 	once        sync.Once
 	temperature float32
 }
-
-var (
-	Temperature float32
-	Model       string
-)
 
 func (o *OpenAI) getClient() *openai.Client {
 	cfg := config.GetIns()

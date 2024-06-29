@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/leslieleung/ptpt/internal/config"
 	"github.com/sashabaranov/go-openai"
+	log "github.com/sirupsen/logrus"
 )
 
 type Client interface {
@@ -15,9 +16,12 @@ type Client interface {
 func GetClient() Client {
 	cfg := config.GetIns()
 	ai := cfg.AiName
+	log.Debugf("当前使用ai: %v", ai)
 	switch ai {
 	case "kimi":
 		return &Kimi{}
+	case "qwen":
+		return &TongYi{}
 	default:
 		return &OpenAI{}
 	}
