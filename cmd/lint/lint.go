@@ -81,6 +81,9 @@ func handleDiff(args []string) ([]string, error) {
 
 func handleFiles(args []string) ([]string, error) {
 	files := make([]string, 0)
+	if len(args) == 0 {
+		ui.ErrorfExit("you should addend a file to lint, eg: ptpt lint file.go")
+	}
 	fileInfo, err := os.Stat(args[0])
 	if err != nil {
 		ui.ErrorfExit("error stat file %s: %s", args[0], err)
