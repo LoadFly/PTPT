@@ -22,6 +22,8 @@ func GetClient() Client {
 		return &Kimi{}
 	case "qwen":
 		return &TongYi{}
+	case "deepseek":
+		return &DeepSeek{}
 	default:
 		return &OpenAI{}
 	}
