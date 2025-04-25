@@ -2,6 +2,7 @@ package commit
 
 import (
 	"fmt"
+
 	"github.com/AlecAivazis/survey/v2"
 	promptcmd "github.com/leslieleung/ptpt/cmd/prompt"
 	"github.com/leslieleung/ptpt/internal/core"
@@ -21,13 +22,6 @@ var lang string
 func commit(cmd *cobra.Command, args []string) {
 	promptcmd.LoadPrompt()
 	// use 16K model for very long diff
-	var purposed string
-	err := survey.AskOne(&survey.Input{
-		Message: "Describe the purpose of this commit(Press Enter to skip):",
-	}, &purposed)
-	if err != nil {
-		ui.ErrorfExit("Failed to get commit purpose: %v", err)
-	}
 
 	diff, err := interract.DiffStageAndHead()
 	if err != nil {

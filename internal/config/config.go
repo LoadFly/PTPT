@@ -37,6 +37,9 @@ func Init() {
 	if err != nil {
 		ui.ErrorfExit("Error unmarshalling config file, %s", err)
 	}
+	if err := InitLogger(); err != nil {
+		ui.ErrorfExit("初始化日志失败, %s", err)
+	}
 }
 
 func GetIns() *Config {
